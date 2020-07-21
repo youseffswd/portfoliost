@@ -48,7 +48,7 @@ function clearWords(){
     },70)
 }
 let main = document.getElementById("main")
-let lis = document.querySelectorAll(".lists li")
+let lis = document.querySelectorAll(".lists li a")
 let closes = document.querySelectorAll(".closeMod")
 // let bodyHeight = window.innerHeight + "px"
 // main.style.height = bodyHeight
@@ -120,3 +120,91 @@ $(".resume").animatedModal({
     animatedOut:"bounceOutDown",
     animationDuration:".1s"
 });
+
+let overlay = document.getElementById("overlay")
+document.querySelector(".video img").onclick = () => overLayBlack(`<iframe  src="https://www.youtube.com/embed/doteMqP6eSc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`)
+document.querySelector(".video div").onclick = () => overLayBlack(`<iframe  src="https://www.youtube.com/embed/doteMqP6eSc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`)
+
+
+
+
+document.getElementById("portfolio").style.animationDelay = ".4s"
+$(".portfolio").animatedModal({
+    color:"#101010",
+    animatedIn:"bounceInUp",
+    animatedOut:"bounceOutDown",
+    animationDuration:".1s"
+});
+
+let filterBtns = document.querySelectorAll("#portfolio .buttons li")
+let filteredImgs = document.querySelectorAll("#portfolio .row .col-6 .img")
+let links = document.querySelectorAll("#portfolio .row .col-6 .img a")
+
+filterBtns.forEach(btn => {
+    btn.onclick = function(){
+        filterBtns.forEach(btn => btn.classList.remove("active"))
+        this.classList.add("active")
+        
+        for (let i = 0; i< filteredImgs.length;i++){
+            
+            if(this.dataset.filt == "all"){
+                filteredImgs[i].parentElement.style.display = "block"
+                gsap.to(filteredImgs[i],{duration:.4,scale:1})
+                
+            }else if(this.dataset.filt === filteredImgs[i].firstElementChild.dataset.filt){
+                filteredImgs[i].parentElement.style.display = "block"
+                gsap.to(filteredImgs[i],{duration:.4,scale:1})
+                
+                
+            }else{
+                    console.log("hi4");
+                    gsap.to(filteredImgs[i],{duration:.4,scale:0})
+                    setTimeout(() => {
+                        filteredImgs[i].parentElement.style.display = "none"
+                    },400)
+                }
+            
+        }
+    }
+})
+links.forEach(link => {
+    link.onclick = () => overLayBlack(`<img src="${link.dataset.img}" />`)
+})
+
+function overLayBlack(element){
+    overlay.querySelector(".middle").innerHTML = element  
+    overlay.style.display = "flex"
+    gsap.to(overlay,{duration:.4,opacity:1})
+    
+}
+overlay.querySelector(".closeIt").onclick = () => {
+    gsap.to(overlay,{duration:.4,opacity:0})
+    gsap.to(overlay,{delay:.4,display:"none"})
+}
+document.getElementById("blog").style.animationDelay = ".4s"
+$(".blog").animatedModal({
+    color:"#101010",
+    animatedIn:"bounceInUp",
+    animatedOut:"bounceOutDown",
+    animationDuration:".1s"
+});
+document.getElementById("contact").style.animationDelay = ".4s"
+$(".contact").animatedModal({
+    color:"#101010",
+    animatedIn:"bounceInUp",
+    animatedOut:"bounceOutDown",
+    animationDuration:".1s"
+});
+
+
+let loader = document.getElementById("loader")
+let balls = document.querySelectorAll("#loader span")
+gsap.to(balls,{duration:1,scale:0, repeat:-1})
+
+
+window.onload = () => {
+    setTimeout(() =>{
+        gsap.to(loader,{duration:.3,opacity:0})
+        gsap.to(loader,{delay:.3,display:"none"})
+    },500)
+}
