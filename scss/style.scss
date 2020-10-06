@@ -817,7 +817,7 @@ header{
                                     width:95%;
                                 }
                                 &.second{
-                                    width:80%;
+                                    width:90%;
                                 }
                                 &.third{
                                     width:90%;
@@ -857,13 +857,13 @@ header{
                                 width:100%;
                             
                                 &.first{
-                                    width:90%;
+                                    width:85%;
                                 }
                                 &.second{
                                     width:95%;
                                 }
                                 &.third{
-                                    width:80%;
+                                    width:90%;
                                 }
                                 span{
                                     position: absolute;
@@ -968,6 +968,11 @@ header{
                     
                     transform: scale(1);
                     position:relative;
+                    &.web {
+                        img{
+                            height:250px;
+                        }
+                    }
                     a{
                         position: absolute;
                         top:0;

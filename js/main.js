@@ -55,22 +55,22 @@ let closes = document.querySelectorAll(".closeMod")
 // main.style.bottom = "-" + bodyHeight
 lis.forEach(li => {
     li.onclick = function(){
-        animation(main,"scaling1 .4s linear  forwards")
+        animation(main,"scaling1 .3s linear  forwards")
         setTimeout(() => {
             main.style.bottom = 0;
             animation(main,"none")
-            animation(main,"scaling2 .4s linear  forwards")
-        },500)
+            animation(main,"scaling2 .3s linear  forwards")
+        },700)
     }
 })
 closes.forEach(close => {
     close.onclick = function(){
-        animation(main,"scaling3 .4s linear   forwards")
+        animation(main,"scaling3 .3s linear   forwards")
         setTimeout(() => {
             main.style.bottom = 0;
             animation(main,"none")
-            animation(main,"scaling4 .4s linear  forwards")
-        },500)
+            animation(main,"scaling4 .3s linear  forwards")
+        },700)
     }
 })
 
@@ -82,7 +82,7 @@ $(".about").animatedModal({
     color:"#101010",
     animatedIn:"bounceInUp",
     animatedOut:"bounceOutDown",
-    animationDuration:".1s"
+    animationDuration:".01s"
 });
 
 
@@ -140,6 +140,10 @@ let filterBtns = document.querySelectorAll("#portfolio .buttons li")
 let filteredImgs = document.querySelectorAll("#portfolio .row .col-6 .img")
 let links = document.querySelectorAll("#portfolio .row .col-6 .img a")
 
+document.querySelectorAll(".web").forEach(img => {
+    img.firstElementChild.style.height = parseInt(img.clientWidth) * 163.5 / 153 + "px"
+    
+})
 filterBtns.forEach(btn => {
     btn.onclick = function(){
         filterBtns.forEach(btn => btn.classList.remove("active"))
@@ -168,7 +172,7 @@ filterBtns.forEach(btn => {
     }
 })
 links.forEach(link => {
-    link.onclick = () => overLayBlack(`<img src="${link.dataset.img}" />`)
+    link.onclick = () => link.dataset.img !== "web" ? overLayBlack(`<img src="${link.dataset.img}" />`) : ""
 })
 
 function overLayBlack(element){
@@ -199,8 +203,11 @@ $(".contact").animatedModal({
 
 let loader = document.getElementById("loader")
 let balls = document.querySelectorAll("#loader span")
-gsap.to(balls,{duration:1,scale:0, repeat:-1})
 
+let tl = gsap.timeline({repeat: -1});
+
+tl.to(balls,{duration:.4,ease: "power1.inOut",scale:0,opacity:0, stagger:.2})
+tl.to(balls,{duration:.4,ease: "power1.inOut",scale:1,opacity:1,stagger:.2})
 
 window.onload = () => {
     setTimeout(() =>{
