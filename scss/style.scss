@@ -22,7 +22,7 @@ body {
     background-color: #161616;
     bottom: -150%;
     left: 0;
-    z-index: 10000000000000000000000000000000000000000;
+    z-index: 1000000;
 
     //animation:scaling2 5s linear 5s forwards alternate-reverse;
 }
@@ -106,7 +106,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000000000000000000000000000000000000000;
+    z-index: 100000000;
     background: #161616;
     display: flex;
     justify-content: center;
